@@ -1,0 +1,143 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* === Marca El Solar === */
+    --color-brand: #14273E;
+    --color-brand-light: #1a3a5e;
+    --color-brand-dark: #0a1420;
+
+    /* Acentos */
+    --color-accent-gold: #d4a853;
+    --color-accent-warm: #c49a3c;
+
+    /* Neutros */
+    --color-white: #ffffff;
+    --color-gray-100: #f5f5f5;
+    --color-gray-200: #e5e5e5;
+    --color-gray-500: #737373;
+    --color-gray-800: #262626;
+    --color-black: #0a0a0a;
+
+    /* Fondos de marca */
+    --color-bg-dark: #0a1420;
+    --color-bg-light: #f8f9fa;
+
+    /* Tipografía */
+    --font-primary: 'Inter', sans-serif;
+
+    /* === Tema oscuro (default) === */
+    --bg-main: #050505;
+    --bg-secondary: #0A0A0A;
+    --bg-card: rgba(20, 20, 20, 0.6);
+    --text-main: #EDEDED;
+    --text-muted: #A3A3A3;
+    --border-color: rgba(255, 255, 255, 0.08);
+    --accent-glow: rgba(255, 255, 255, 0.04);
+    --button-bg: #FFFFFF;
+    --button-text: #000000;
+    --nav-glass: rgba(5, 5, 5, 0.75);
+  }
+
+  [data-theme='light'] {
+    --bg-main: #F2F2F2;
+    --bg-secondary: #E8E8E8;
+    --bg-card: rgba(255, 255, 255, 0.85);
+    --text-main: #111111;
+    --text-muted: #555555;
+    --border-color: rgba(0, 0, 0, 0.08);
+    --accent-glow: rgba(0, 0, 0, 0.03);
+    --button-bg: #000000;
+    --button-text: #FFFFFF;
+    --nav-glass: rgba(242, 242, 242, 0.85);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    transition: background-color 0.4s ease, color 0.4s ease;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', sans-serif;
+    color: var(--text-main);
+  }
+}
+
+@layer components {
+  /* Noise texture overlay */
+  .noise-overlay {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 128px 128px;
+  }
+
+  /* Nav glass morphism */
+  .glass-panel {
+    background: var(--nav-glass);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  /* Cards */
+  .card-depth {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 24px -1px rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+
+  /* WhatsApp floating button (Latin Growth style) */
+  .wa-float {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background: #25D366;
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    z-index: 50;
+    text-decoration: none;
+  }
+
+  .wa-float:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 28px rgba(37, 211, 102, 0.65);
+  }
+
+  .wa-float svg {
+    width: 30px;
+    height: 30px;
+    fill: white;
+  }
+
+  /* Text balance */
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Page hero background gradient */
+  .hero-gradient {
+    background: radial-gradient(ellipse at 50% 0%, var(--accent-glow), transparent 65%);
+  }
+}

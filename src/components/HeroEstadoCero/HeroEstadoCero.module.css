@@ -1,0 +1,466 @@
+/* ============================================================
+   HeroEstadoCero — Estilos encapsulados
+   ============================================================ */
+
+/* Contenedor principal */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #0a1420;
+}
+
+/* Canvas Three.js — fondo absoluto */
+.canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+/* Fallback estático mientras carga Three.js */
+.fallback {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #0a1420 0%, #14273e 60%, #1a3a5e 100%);
+  z-index: 0;
+}
+
+/* Rejilla de fondo */
+.grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(0deg, transparent 24%, rgba(20, 39, 62, 0.15) 25%, rgba(20, 39, 62, 0.15) 26%, transparent 27%,
+      transparent 74%, rgba(20, 39, 62, 0.15) 75%, rgba(20, 39, 62, 0.15) 76%, transparent 77%),
+    linear-gradient(90deg, transparent 24%, rgba(20, 39, 62, 0.15) 25%, rgba(20, 39, 62, 0.15) 26%, transparent 27%,
+      transparent 74%, rgba(20, 39, 62, 0.15) 75%, rgba(20, 39, 62, 0.15) 76%, transparent 77%);
+  background-size: 50px 50px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Copy — layout de escritorio */
+.copy {
+  position: absolute;
+  top: 4rem;
+  bottom: 3rem;
+  left: 11rem;
+  right: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.eyebrow {
+  font-size: 0.625rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(163, 163, 163, 0.8);
+  margin-bottom: 1rem;
+}
+
+.h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(1.2rem, 2.2vw, 2rem);
+  font-weight: 300;
+  line-height: 1.15;
+  color: #ededed;
+  letter-spacing: -0.02em;
+  margin-top: auto;
+  margin-bottom: 0.75rem;
+  max-width: 380px; /* obliga 2-3 líneas */
+}
+
+.h1 strong {
+  font-weight: 500;
+}
+
+.subtitle {
+  font-size: clamp(0.75rem, 1vw, 0.875rem);
+  font-weight: 300;
+  color: rgba(163, 163, 163, 0.85);
+  max-width: 380px;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+  margin-left: 0.5rem; /* indent sutilmente */
+}
+
+/* CTA — pointer-events re-habilitados */
+.ctaWrapper {
+  pointer-events: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+}
+
+.ctaButton {
+  display: inline-block;
+  padding: 0.875rem 2rem;
+  background: linear-gradient(135deg, #14273e 0%, #1a3a5e 100%);
+  color: #ededed;
+  border: 1px solid rgba(212, 168, 83, 0.4);
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: opacity 0.25s, border-color 0.25s;
+  text-decoration: none;
+}
+
+.ctaButton:hover {
+  opacity: 0.85;
+  border-color: rgba(212, 168, 83, 0.8);
+}
+
+.ctaStatus {
+  font-size: 0.625rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(163, 163, 163, 0.6);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ctaStatusDot {
+  width: 0.5rem;
+  height: 0.5rem;
+  background: #22c55e;
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* Etiquetas inferiores — removidas */
+.footerLabels {
+  display: none;
+}
+
+/* ============================================================
+   Slider vertical
+   ============================================================ */
+.sliderWrapper {
+  position: absolute;
+  top: 50%;
+  left: 2.5rem;
+  transform: translateY(-50%);
+  height: 60vh;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  z-index: 3;
+}
+
+.sliderTrack {
+  position: relative;
+  height: 100%;
+  width: 20px;
+}
+
+.slider {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-90deg);
+  width: 60vh;
+  height: 20px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  outline: none;
+  cursor: pointer;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 28px;
+  height: 28px;
+  background: #d4a853;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0 12px rgba(212, 168, 83, 0.7);
+}
+
+.slider::-moz-range-thumb {
+  width: 28px;
+  height: 28px;
+  background: #d4a853;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0 12px rgba(212, 168, 83, 0.7);
+  border: none;
+}
+
+.sliderStages {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: space-between;
+  height: 100%;
+  font-size: 0.625rem;
+  color: rgba(163, 163, 163, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* ============================================================
+   Panel IA
+   ============================================================ */
+.aiPanel {
+  position: absolute;
+  right: 1.25rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 320px;
+  background: rgba(10, 20, 32, 0.75);
+  border: 1px solid rgba(20, 39, 62, 0.8);
+  border-radius: 12px;
+  padding: 1.25rem;
+  z-index: 4;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(212, 168, 83, 0.1);
+}
+
+.aiPanelTitle {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: 'Space Grotesk', sans-serif;
+  color: #ededed;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.aiPanelSub {
+  margin: 0;
+  font-size: 0.75rem;
+  color: rgba(163, 163, 163, 0.7);
+  line-height: 1.5;
+}
+
+.aiInput {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #ededed;
+  border-radius: 8px;
+  padding: 0.625rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8125rem;
+  resize: none;
+  box-sizing: border-box;
+  transition: border-color 0.25s;
+  line-height: 1.5;
+}
+
+.aiInput:focus {
+  outline: none;
+  border-color: rgba(212, 168, 83, 0.6);
+}
+
+.aiInput:disabled {
+  opacity: 0.6;
+}
+
+.inputHighlight {
+  border-color: #d4a853 !important;
+  box-shadow: 0 0 12px rgba(212, 168, 83, 0.4);
+}
+
+.aiButton {
+  background: linear-gradient(135deg, #14273e 0%, #1a3a5e 100%);
+  color: #ededed;
+  border: 1px solid rgba(212, 168, 83, 0.35);
+  padding: 0.75rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8125rem;
+  transition: opacity 0.25s, border-color 0.25s;
+  letter-spacing: 0.02em;
+}
+
+.aiButton:hover {
+  opacity: 0.85;
+  border-color: rgba(212, 168, 83, 0.7);
+}
+
+.aiButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.aiResult {
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: rgba(237, 237, 237, 0.9);
+  max-height: 220px;
+  overflow-y: auto;
+  background: rgba(0, 0, 0, 0.35);
+  padding: 0.875rem;
+  border-radius: 8px;
+  border-left: 3px solid #d4a853;
+}
+
+.aiError {
+  margin: 0;
+  font-size: 0.75rem;
+  color: #f87171;
+}
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+
+/* Móvil: esfera + panel IA + copy scrolleable */
+@media (max-width: 767px) {
+  /* Hero suficientemente alto para todo el contenido */
+  .hero {
+    height: auto;
+    min-height: 140svh;
+  }
+
+  /* Canvas cubre solo la primera vista */
+  .canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100svh;
+    z-index: 0;
+  }
+
+  .grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100svh;
+    z-index: 1;
+  }
+
+  /* Slider oculto */
+  .sliderWrapper {
+    display: none;
+  }
+
+  /* Panel IA: anclado a los 55svh (mitad de la pantalla) */
+  .aiPanel {
+    position: absolute;
+    top: 55svh;
+    left: 0;
+    right: 0;
+    bottom: auto;
+    transform: none;
+    width: 100%;
+    border-radius: 12px 12px 0 0;
+    max-height: none;
+    overflow-y: visible;
+    z-index: 4;
+  }
+
+  /* Copy: visible al scrollear, después del panel IA */
+  .copy {
+    position: absolute;
+    top: calc(100svh + 1.5rem);
+    left: 1.5rem;
+    right: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.5rem 0 3rem;
+    background: transparent;
+    z-index: 2;
+    max-width: none;
+    text-align: left;
+  }
+
+  /* Eyebrow oculto en mobile */
+  .eyebrow {
+    display: none;
+  }
+
+  /* H1 compacto para mobile */
+  .h1 {
+    font-size: 1.3rem;
+    font-weight: 300;
+    line-height: 1.2;
+    color: #ededed;
+    letter-spacing: -0.02em;
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    max-width: none;
+  }
+
+  .subtitle {
+    font-size: 0.875rem;
+    font-weight: 300;
+    color: rgba(163, 163, 163, 0.85);
+    line-height: 1.4;
+    margin-bottom: 1.25rem;
+    margin-left: 0;
+    max-width: none;
+  }
+
+  .ctaWrapper {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .ctaButton {
+    width: 100%;
+    text-align: center;
+  }
+
+  .ctaStatus {
+    font-size: 0.5rem;
+  }
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .aiPanel {
+    width: 240px;
+    right: 1rem;
+  }
+
+  .sliderWrapper {
+    left: 1.25rem;
+    height: 50vh;
+  }
+
+  .copy {
+    left: 6rem;
+    right: 280px;
+    top: 2rem;
+    max-width: 320px;
+  }
+
+  .h1 {
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    max-width: 320px;
+  }
+
+  .eyebrow {
+    margin-bottom: 10vh;
+  }
+}
