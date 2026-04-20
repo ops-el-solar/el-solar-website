@@ -20,7 +20,7 @@ export default function VideoHero({
   heading,
   subheading,
   ctaLabel = 'Tu Diagnóstico Inteligente — Fase 1 Gratis',
-  ctaTo = '/contacto',
+  ctaTo = 'https://tidycal.com/elsolar/sesion-de-diagnostico-auditoria-de-adquisicion-b2b',
   overlayOpacity = 0.6,
   minHeight = '90vh',
 }) {
@@ -84,12 +84,23 @@ export default function VideoHero({
             </p>
           )}
 
-          <Link
-            to={ctaTo}
-            className="inline-flex items-center gap-3 px-8 py-4 bg-white text-black text-[10px] font-bold uppercase tracking-[0.2em] hover:bg-white/90 transition-colors"
-          >
-            {ctaLabel}
-          </Link>
+          {ctaTo.startsWith('http') ? (
+            <a
+              href={ctaTo}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 px-8 py-4 bg-white text-black text-[10px] font-bold uppercase tracking-[0.2em] hover:bg-white/90 transition-colors"
+            >
+              {ctaLabel}
+            </a>
+          ) : (
+            <Link
+              to={ctaTo}
+              className="inline-flex items-center gap-3 px-8 py-4 bg-white text-black text-[10px] font-bold uppercase tracking-[0.2em] hover:bg-white/90 transition-colors"
+            >
+              {ctaLabel}
+            </Link>
+          )}
         </motion.div>
       </div>
 

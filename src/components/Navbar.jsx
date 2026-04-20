@@ -68,12 +68,14 @@ export default function Navbar({ theme, toggleTheme }) {
           {/* Actions */}
           <div className="flex items-center gap-3">
             <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
-            <Link
-              to="/contacto"
+            <a
+              href="https://tidycal.com/elsolar/sesion-de-diagnostico-auditoria-de-adquisicion-b2b"
+              target="_blank"
+              rel="noopener noreferrer"
               className="hidden md:flex items-center px-5 py-2 text-[10px] tracking-[0.18em] uppercase font-medium bg-[var(--button-bg)] text-[var(--button-text)] hover:opacity-85 transition-opacity duration-200"
             >
               Tu Diagnóstico Inteligente
-            </Link>
+            </a>
             <button
               onClick={toggleMenu}
               className="lg:hidden p-2 text-[var(--text-muted)] hover:text-[var(--text-main)] transition-colors"
@@ -101,12 +103,14 @@ export default function Navbar({ theme, toggleTheme }) {
             {label}
           </Link>
         ))}
-        <Link
-          to="/contacto"
+        <a
+          href="https://tidycal.com/elsolar/sesion-de-diagnostico-auditoria-de-adquisicion-b2b"
+          target="_blank"
+          rel="noopener noreferrer"
           className="mt-4 text-3xl font-light font-space text-[var(--text-main)]"
         >
           Tu Diagnóstico Inteligente
-        </Link>
+        </a>
       </motion.div>
     </>
   )

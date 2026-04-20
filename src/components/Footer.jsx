@@ -101,12 +101,14 @@ export default function Footer() {
             >
               WhatsApp
             </a>
-            <Link
-              to="/contacto"
+            <a
+              href="https://tidycal.com/elsolar/sesion-de-diagnostico-auditoria-de-adquisicion-b2b"
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-[11px] uppercase tracking-widest text-white/60 hover:text-white transition-colors duration-200"
             >
               Tu Diagnóstico Inteligente
-            </Link>
+            </a>
           </div>
 
         </div>

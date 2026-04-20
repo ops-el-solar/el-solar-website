@@ -690,9 +690,9 @@ export default function CulturaIA() {
             <p className="text-[var(--text-muted)] mb-10 leading-relaxed text-sm">
               La única forma de saberlo es hablando. Sin compromisos, sin propuesta de venta en la primera conversación.
             </p>
-            <Link to="/contacto">
+            <a href="https://tidycal.com/elsolar/sesion-de-diagnostico-auditoria-de-adquisicion-b2b" target="_blank" rel="noopener noreferrer">
               <Button primary>Tu Diagnóstico Inteligente — Fase 1 Gratis</Button>
-            </Link>
+            </a>
             <p className="mt-4 text-xs text-[var(--text-muted)]">
               Sin precio en página — cada proyecto es personalizado según el alcance y la empresa.
             </p>

@@ -160,9 +160,9 @@ export default function HeroEstadoCero() {
           Diseñamos sistemas que convierten ruido operativo en decisiones claras.
         </p>
         <div className={styles.ctaWrapper}>
-          <button className={styles.ctaButton} onClick={scrollToPanel}>
+          <a href="https://tidycal.com/elsolar/sesion-de-diagnostico-auditoria-de-adquisicion-b2b" target="_blank" rel="noopener noreferrer" className={styles.ctaButton}>
             Tu Diagnóstico Inteligente — Fase 1 Gratis
-          </button>
+          </a>
           <span className={styles.ctaStatus}>
             <span className={styles.ctaStatusDot} />
             Proceso de selección activo

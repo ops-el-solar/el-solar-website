@@ -274,12 +274,14 @@ function Systems() {
                 No es un pitch de ventas. Es un escáner de tu negocio.
               </p>
             </div>
-            <Link
-              to="/contacto"
+            <a
+              href="https://tidycal.com/elsolar/sesion-de-diagnostico-auditoria-de-adquisicion-b2b"
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex-shrink-0 px-8 py-4 bg-[var(--button-bg)] text-[var(--button-text)] text-[10px] font-bold uppercase tracking-[0.18em] hover:opacity-85 transition-opacity whitespace-nowrap"
             >
               Tu Diagnóstico Inteligente — Fase 1 Gratis
-            </Link>
+            </a>
           </div>
         </motion.div>
       </div>
