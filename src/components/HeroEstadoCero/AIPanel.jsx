@@ -1,20 +1,20 @@
 import { useRef, useState, useImperativeHandle, forwardRef } from 'react';
 import styles from './HeroEstadoCero.module.css';
 
-async function fetchWithRetry(text, maxRetries = 5) {
+async function fetchWithRetry(text, conversationId, maxRetries = 5) {
   for (let i = 0; i < maxRetries; i++) {
     try {
       const res = await fetch('/.netlify/functions/claridad', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ text }),
+        body: JSON.stringify({ text, conversationId }),
       });
 
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
       const data = await res.json();
       if (data.error) throw new Error(data.error);
-      return data.result;
+      return { result: data.result, conversationId: data.conversationId || conversationId };
     } catch (err) {
       if (i === maxRetries - 1) throw err;
       await new Promise((r) => setTimeout(r, Math.pow(2, i) * 1000));
@@ -33,6 +33,7 @@ const AIPanel = forwardRef(function AIPanel({ onMorphStart, onInterrupt }, ref) 
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState('');
   const [error, setError] = useState('');
+  const [conversationId] = useState(() => `session-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`);
 
   useImperativeHandle(ref, () => ({
     typeDemo(text) {
@@ -60,16 +61,17 @@ const AIPanel = forwardRef(function AIPanel({ onMorphStart, onInterrupt }, ref) 
 
     onInterrupt?.();
     setLoading(true);
-    setResult('');
     setError('');
     onMorphStart?.(0); // reset to chaos first
 
     try {
-      const raw = await fetchWithRetry(text);
+      const { result: raw } = await fetchWithRetry(text, conversationId);
       setResult(formatResult(raw));
+      inputRef.current.value = '';
       onMorphStart?.(100); // animate to Estado Cero
-    } catch {
-      setError('Servicio temporalmente no disponible.');
+    } catch (err) {
+      setError('⚠️ Servicio no disponible. Si persiste, contacta a: info@elsolaragencia.co');
+      console.error('API Error:', err);
     } finally {
       setLoading(false);
     }
