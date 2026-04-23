@@ -20,7 +20,7 @@ export default function VideoHero({
   heading,
   subheading,
   ctaLabel = 'Tu Diagnóstico Inteligente — Fase 1 Gratis',
-  ctaTo = 'https://tidycal.com/elsolar/sesion-de-diagnostico-auditoria-de-adquisicion-b2b',
+  ctaTo = 'https://claritystateai.com',
   overlayOpacity = 0.6,
   minHeight = '90vh',
 }) {

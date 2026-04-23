@@ -275,7 +275,7 @@ function Systems() {
               </p>
             </div>
             <a
-              href="https://tidycal.com/elsolar/sesion-de-diagnostico-auditoria-de-adquisicion-b2b"
+              href="https://claritystateai.com"
               target="_blank"
               rel="noopener noreferrer"
               className="flex-shrink-0 px-8 py-4 bg-[var(--button-bg)] text-[var(--button-text)] text-[10px] font-bold uppercase tracking-[0.18em] hover:opacity-85 transition-opacity whitespace-nowrap"
