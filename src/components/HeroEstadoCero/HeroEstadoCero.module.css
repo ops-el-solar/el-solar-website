@@ -311,34 +311,89 @@
   cursor: not-allowed;
 }
 
-.aiResult {
-  font-size: 0.8125rem;
-  line-height: 1.6;
-  color: rgba(237, 237, 237, 0.9);
-  max-height: clamp(120px, calc(100vh - 440px), 380px);
+.chatHistory {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-height: clamp(180px, calc(100vh - 280px), 420px);
   overflow-y: auto;
-  background: rgba(0, 0, 0, 0.35);
-  padding: 0.875rem;
-  border-radius: 8px;
-  border-left: 3px solid #d4a853;
 }
 
-.aiResult::-webkit-scrollbar {
+.chatHistory::-webkit-scrollbar {
   width: 5px;
 }
 
-.aiResult::-webkit-scrollbar-track {
+.chatHistory::-webkit-scrollbar-track {
   background: rgba(255, 255, 255, 0.04);
   border-radius: 10px;
 }
 
-.aiResult::-webkit-scrollbar-thumb {
+.chatHistory::-webkit-scrollbar-thumb {
   background: rgba(212, 168, 83, 0.5);
   border-radius: 10px;
 }
 
-.aiResult::-webkit-scrollbar-thumb:hover {
+.chatHistory::-webkit-scrollbar-thumb:hover {
   background: rgba(212, 168, 83, 0.85);
+}
+
+.chatBubbleBot {
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: rgba(237, 237, 237, 0.9);
+  background: rgba(0, 0, 0, 0.35);
+  padding: 0.75rem 0.875rem;
+  border-radius: 8px;
+  border-left: 3px solid #d4a853;
+  align-self: flex-start;
+  max-width: 100%;
+}
+
+.chatBubbleUser {
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: rgba(237, 237, 237, 0.85);
+  background: rgba(20, 39, 62, 0.65);
+  padding: 0.625rem 0.875rem;
+  border-radius: 8px;
+  border-right: 2px solid rgba(212, 168, 83, 0.35);
+  align-self: flex-end;
+  max-width: 90%;
+  text-align: right;
+}
+
+.inputRow {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-end;
+}
+
+.inputRow .aiInput {
+  flex: 1;
+}
+
+.sendButton {
+  background: linear-gradient(135deg, #14273e 0%, #1a3a5e 100%);
+  color: #d4a853;
+  border: 1px solid rgba(212, 168, 83, 0.35);
+  padding: 0.625rem 0.75rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  line-height: 1;
+  transition: opacity 0.25s, border-color 0.25s;
+  flex-shrink: 0;
+  align-self: flex-end;
+}
+
+.sendButton:hover {
+  opacity: 0.85;
+  border-color: rgba(212, 168, 83, 0.7);
+}
+
+.sendButton:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
 }
 
 .aiError {
@@ -420,6 +475,10 @@
     max-height: none;
     overflow-y: visible;
     z-index: 4;
+  }
+
+  .chatHistory {
+    max-height: 200px;
   }
 
   /* Copy: visible al scrollear, después del panel IA */

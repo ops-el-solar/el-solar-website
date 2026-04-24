@@ -1,6 +1,8 @@
 import { useRef, useState, useImperativeHandle, forwardRef, useEffect } from 'react';
 import styles from './HeroEstadoCero.module.css';
 
+const GREETING = '¿En qué tipo de negocio trabajás y cuál es el mayor obstáculo que tenés para conseguir clientes nuevos?';
+
 async function fetchWithRetry(text, conversationId, maxRetries = 5) {
   for (let i = 0; i < maxRetries; i++) {
     try {
@@ -22,7 +24,7 @@ async function fetchWithRetry(text, conversationId, maxRetries = 5) {
   }
 }
 
-function formatResult(text) {
+function formatBotMessage(text) {
   return text
     .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
     .replace(/\n/g, '<br>');
@@ -30,17 +32,17 @@ function formatResult(text) {
 
 const AIPanel = forwardRef(function AIPanel({ onMorphStart, onInterrupt }, ref) {
   const inputRef = useRef(null);
-  const resultRef = useRef(null);
+  const chatRef = useRef(null);
+  const [messages, setMessages] = useState([{ role: 'assistant', content: GREETING }]);
   const [loading, setLoading] = useState(false);
-  const [result, setResult] = useState('');
   const [error, setError] = useState('');
   const [conversationId] = useState(() => `session-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`);
 
   useEffect(() => {
-    if (result && resultRef.current) {
-      resultRef.current.scrollTop = 0;
+    if (chatRef.current) {
+      chatRef.current.scrollTop = chatRef.current.scrollHeight;
     }
-  }, [result]);
+  }, [messages, loading]);
 
   useImperativeHandle(ref, () => ({
     typeDemo(text) {
@@ -49,7 +51,7 @@ const AIPanel = forwardRef(function AIPanel({ onMorphStart, onInterrupt }, ref) 
     clearInput() {
       if (inputRef.current) {
         inputRef.current.value = '';
-        inputRef.current.placeholder = 'Escribe tu propio caos aquí...';
+        inputRef.current.placeholder = 'Escribí acá... (Enter para enviar)';
         inputRef.current.classList.add(styles.inputHighlight);
         setTimeout(() => inputRef.current?.classList.remove(styles.inputHighlight), 2000);
       }
@@ -64,23 +66,31 @@ const AIPanel = forwardRef(function AIPanel({ onMorphStart, onInterrupt }, ref) 
 
   async function handleSubmit() {
     const text = inputRef.current?.value?.trim();
-    if (!text) return;
+    if (!text || loading) return;
 
     onInterrupt?.();
+    setMessages(prev => [...prev, { role: 'user', content: text }]);
+    inputRef.current.value = '';
     setLoading(true);
     setError('');
-    onMorphStart?.(0); // reset to chaos first
+    onMorphStart?.(0);
 
     try {
       const { result: raw } = await fetchWithRetry(text, conversationId);
-      setResult(formatResult(raw));
-      inputRef.current.value = '';
-      onMorphStart?.(100); // animate to Estado Cero
+      setMessages(prev => [...prev, { role: 'assistant', content: raw }]);
+      onMorphStart?.(100);
     } catch (err) {
-      setError('⚠️ Servicio no disponible. Si persiste, contacta a: info@elsolaragencia.co');
+      setError('⚠️ Servicio no disponible. Si persiste: info@elsolaragencia.co');
       console.error('API Error:', err);
     } finally {
       setLoading(false);
+    }
+  }
+
+  function handleKeyDown(e) {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      handleSubmit();
     }
   }
 
@@ -97,47 +107,53 @@ const AIPanel = forwardRef(function AIPanel({ onMorphStart, onInterrupt }, ref) 
         Asistente de Claridad
       </h2>
 
-      <p className={styles.aiPanelSub}>
-        Describe una situación caótica de tu negocio. La IA la estructurará al primer nivel de orden.
-      </p>
+      <div ref={chatRef} className={styles.chatHistory}>
+        {messages.map((msg, i) =>
+          msg.role === 'assistant' ? (
+            <div
+              key={i}
+              className={styles.chatBubbleBot}
+              dangerouslySetInnerHTML={{ __html: formatBotMessage(msg.content) }}
+            />
+          ) : (
+            <div key={i} className={styles.chatBubbleUser}>
+              {msg.content}
+            </div>
+          )
+        )}
+        {loading && (
+          <div className={styles.chatBubbleBot}>
+            <div className={styles.aiLoading} aria-label="Procesando...">
+              <div className={styles.aiLoadingDot} />
+              <div className={styles.aiLoadingDot} />
+              <div className={styles.aiLoadingDot} />
+            </div>
+          </div>
+        )}
+      </div>
 
-      <textarea
-        ref={inputRef}
-        className={styles.aiInput}
-        placeholder="Ej. Tengo muchas ideas de marketing para el negocio y mi equipo está saturado, no sabemos por dónde empezar..."
-        rows={4}
-        onFocus={handleInputInteraction}
-        onInput={handleInputInteraction}
-        disabled={loading}
-      />
-
-      <button
-        className={styles.aiButton}
-        onClick={handleSubmit}
-        disabled={loading}
-      >
-        {loading ? 'Analizando el caos...' : 'Transformar a Claridad'}
-      </button>
-
-      {loading && (
-        <div className={styles.aiLoading} aria-label="Procesando...">
-          <div className={styles.aiLoadingDot} />
-          <div className={styles.aiLoadingDot} />
-          <div className={styles.aiLoadingDot} />
-        </div>
-      )}
-
-      {result && (
-        <div
-          ref={resultRef}
-          className={styles.aiResult}
-          dangerouslySetInnerHTML={{ __html: result }}
+      <div className={styles.inputRow}>
+        <textarea
+          ref={inputRef}
+          className={styles.aiInput}
+          placeholder="Escribí acá... (Enter para enviar)"
+          rows={2}
+          onFocus={handleInputInteraction}
+          onInput={handleInputInteraction}
+          onKeyDown={handleKeyDown}
+          disabled={loading}
         />
-      )}
+        <button
+          className={styles.sendButton}
+          onClick={handleSubmit}
+          disabled={loading}
+          aria-label="Enviar"
+        >
+          ↑
+        </button>
+      </div>
 
-      {error && (
-        <p className={styles.aiError}>{error}</p>
-      )}
+      {error && <p className={styles.aiError}>{error}</p>}
     </div>
   );
 });
