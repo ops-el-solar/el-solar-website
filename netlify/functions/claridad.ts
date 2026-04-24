@@ -43,7 +43,7 @@ Identifica el tipo de negocio para personalizar el mensaje:
 Al final, ofrece DOS caminos (sin ser agresivo, que fluya natural):
 "Si te interesa construir un sistema de adquisición de clientes más predecible, tienes dos opciones:
 
-📅 **Sesión de diagnóstico gratuita (30 min):** agendamos una llamada y te doy un plan específico para tu negocio → [TIDYCAL_URL]
+📅 **Sesión de diagnóstico gratuita (30 min):** agendamos una llamada y te doy un plan específico para tu negocio → https://tidycal.com/elsolar/sesion-de-diagnostico-auditoria-de-adquisicion-b2b
 
 📋 **Diagnóstico escrito inmediato:** responde 7 preguntas y recibes tu análisis con puntuación y próximos pasos → claritystateai.com
 
