@@ -1,4 +1,4 @@
-import { useRef, useState, useImperativeHandle, forwardRef } from 'react';
+import { useRef, useState, useImperativeHandle, forwardRef, useEffect } from 'react';
 import styles from './HeroEstadoCero.module.css';
 
 async function fetchWithRetry(text, conversationId, maxRetries = 5) {
@@ -30,10 +30,17 @@ function formatResult(text) {
 
 const AIPanel = forwardRef(function AIPanel({ onMorphStart, onInterrupt }, ref) {
   const inputRef = useRef(null);
+  const resultRef = useRef(null);
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState('');
   const [error, setError] = useState('');
   const [conversationId] = useState(() => `session-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`);
+
+  useEffect(() => {
+    if (result && resultRef.current) {
+      resultRef.current.scrollTop = 0;
+    }
+  }, [result]);
 
   useImperativeHandle(ref, () => ({
     typeDemo(text) {
@@ -112,8 +119,17 @@ const AIPanel = forwardRef(function AIPanel({ onMorphStart, onInterrupt }, ref) 
         {loading ? 'Analizando el caos...' : 'Transformar a Claridad'}
       </button>
 
+      {loading && (
+        <div className={styles.aiLoading} aria-label="Procesando...">
+          <div className={styles.aiLoadingDot} />
+          <div className={styles.aiLoadingDot} />
+          <div className={styles.aiLoadingDot} />
+        </div>
+      )}
+
       {result && (
         <div
+          ref={resultRef}
           className={styles.aiResult}
           dangerouslySetInnerHTML={{ __html: result }}
         />
