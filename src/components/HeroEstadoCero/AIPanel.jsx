@@ -1,7 +1,7 @@
 import { useRef, useState, useImperativeHandle, forwardRef, useEffect } from 'react';
 import styles from './HeroEstadoCero.module.css';
 
-const GREETING = '¿En qué tipo de negocio trabajás y cuál es el mayor obstáculo que tenés para conseguir clientes nuevos?';
+const GREETING = '¿En qué tipo de negocio trabajas y cuál es el mayor obstáculo que tienes para conseguir clientes nuevos?';
 
 async function fetchWithRetry(text, conversationId, maxRetries = 5) {
   for (let i = 0; i < maxRetries; i++) {
