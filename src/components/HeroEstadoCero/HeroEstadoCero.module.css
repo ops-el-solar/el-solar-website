@@ -446,7 +446,8 @@
   /* Hero suficientemente alto para todo el contenido */
   .hero {
     height: auto;
-    min-height: 140svh;
+    min-height: 165svh;
+    overflow: visible;
   }
 
   /* Canvas cubre solo la primera vista */

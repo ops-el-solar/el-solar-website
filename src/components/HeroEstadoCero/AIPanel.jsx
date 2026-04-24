@@ -81,7 +81,7 @@ const AIPanel = forwardRef(function AIPanel({ onMorphStart, onInterrupt }, ref) 
       setMessages(prev => [...prev, { role: 'assistant', content: raw }]);
       onMorphStart?.(100);
     } catch (err) {
-      setError('⚠️ Servicio no disponible. Si persiste: info@elsolaragencia.co');
+      setError('⚠️ Servicio no disponible. Si persiste: hola@elsolaragencia.co');
       console.error('API Error:', err);
     } finally {
       setLoading(false);

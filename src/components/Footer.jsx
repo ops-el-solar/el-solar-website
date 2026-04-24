@@ -88,10 +88,10 @@ export default function Footer() {
           <div className="flex flex-col gap-3">
             <p className="text-[9px] uppercase tracking-[0.2em] text-white/40 mb-1">Contacto</p>
             <a
-              href="mailto:hola@elsolar.co"
+              href="mailto:hola@elsolaragencia.co"
               className="text-[11px] uppercase tracking-widest text-white/60 hover:text-white transition-colors duration-200"
             >
-              hola@elsolar.co
+              hola@elsolaragencia.co
             </a>
             <a
               href="https://wa.me/573203223580"
