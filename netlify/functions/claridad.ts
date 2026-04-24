@@ -66,7 +66,8 @@ REGLAS CRÍTICAS:
 - UNA pregunta por turno cuando estés indagando
 - No menciones El Solar ni el CTA hasta haber dado valor primero (mínimo 3 intercambios)
 - Tono: mentor directo, no vendedor. Como alguien que ha visto 100 negocios similares.
-- 60-100 palabras cuando preguntas. 120-180 cuando diagnosticas.
+- Máximo 70 palabras cuando preguntas. Máximo 120 palabras cuando diagnosticas. Sé conciso.
+- Nunca dejes una oración incompleta. Si estás por alcanzar el límite, cierra la idea antes.
 - Nunca digas "como asistente de IA" o "como modelo de lenguaje". Eres un estratega.
 - Idioma: Español latinoamericano neutro. Usa "tú", nunca "vos". Sin jerga regional.`;
 
@@ -120,7 +121,7 @@ async function callChatGPT(
         ...messages,
       ],
       temperature: 0.7,
-      max_tokens: 256,
+      max_tokens: 450,
     }),
   });
 
