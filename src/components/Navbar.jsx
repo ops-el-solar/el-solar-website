@@ -69,7 +69,7 @@ export default function Navbar({ theme, toggleTheme }) {
           <div className="flex items-center gap-3">
             <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
             <a
-              href="https://claritystateai.com"
+              href="https://tidycal.com/elsolar/sesion-de-diagnostico-auditoria-de-adquisicion-b2b"
               target="_blank"
               rel="noopener noreferrer"
               className="hidden md:flex items-center px-5 py-2 text-[10px] tracking-[0.18em] uppercase font-medium bg-[var(--button-bg)] text-[var(--button-text)] hover:opacity-85 transition-opacity duration-200"
@@ -104,7 +104,7 @@ export default function Navbar({ theme, toggleTheme }) {
           </Link>
         ))}
         <a
-          href="https://claritystateai.com"
+          href="https://tidycal.com/elsolar/sesion-de-diagnostico-auditoria-de-adquisicion-b2b"
           target="_blank"
           rel="noopener noreferrer"
           className="mt-4 text-3xl font-light font-space text-[var(--text-main)]"
