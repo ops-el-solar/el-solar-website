@@ -337,6 +337,17 @@
   background: rgba(212, 168, 83, 0.85);
 }
 
+.chatBubbleBot a {
+  color: #d4a853;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  word-break: break-all;
+}
+
+.chatBubbleBot a:hover {
+  opacity: 0.75;
+}
+
 .chatBubbleBot {
   font-size: 0.8125rem;
   line-height: 1.6;

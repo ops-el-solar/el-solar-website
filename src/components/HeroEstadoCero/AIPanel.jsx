@@ -27,6 +27,7 @@ async function fetchWithRetry(text, conversationId, maxRetries = 5) {
 function formatBotMessage(text) {
   return text
     .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+    .replace(/https?:\/\/[^\s<>"]+/g, (url) => `<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`)
     .replace(/\n/g, '<br>');
 }
 
